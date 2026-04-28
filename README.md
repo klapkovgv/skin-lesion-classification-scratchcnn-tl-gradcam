@@ -1,5 +1,5 @@
 # skin-lesion-classification-scratchcnn-tl-gradcam
-This project is dedicated to the development and comparison of three deep learning models for binary classification of skin lesions, based on the ISIC 2018-based Binary Classification Dataset (preprocessed and augmented).
+This project is dedicated to the development and comparison of three deep learning models for binary classification of skin lesions, based on the ISIC 2018 Dataset.
 
 The work implements a complete pipeline: from preprocessing "raw" images to training models from scratch and utilizing transfer learning, as well as interpreting their decisions using Grad-CAM.
 
@@ -128,19 +128,11 @@ In accordance with the project requirements, MobileNetV2 was selected as the pri
 
 Traditional residual connections follow an "expansion → compression → expansion" scheme, but MobileNetV2 utilizes an inverted structure: **"compression → expansion → compression"**. As noted by Sandler et al. (2018), shortcuts connecting the bottlenecks perform significantly better than those connecting expanded layers, ensuring a more efficient gradient flow and improved overall performance.
 
-<img width="821" height="363" alt="1" src="https://github.com/user-attachments/assets/90642477-0f98-4c2b-93da-15d6e5e396f0" />
-
-Figure from Sandler et al. (2018)
-
 ### Linear Bottlenecks
 
 MobileNetV2 introduces linear bottlenecks instead of non-linear activations in its narrow layers. Research suggests that linear bottlenecks improve performance because non-linearity tends to destroy critical information when operating in low-dimensional spaces. By maintaining linearity in these layers, the model preserves more essential data throughout the feature extraction process.
 
-<img width="850" height="350" alt="2" src="https://github.com/user-attachments/assets/ab942b0b-10ed-4ca4-af8b-fb2b178360fe" />
-
-Figure from Sandler et al. (2018)
-
-Reference: MobileNetV2: Inverted Residuals and Linear Bottlenecks (CVPR 2018) https://arxiv.org/abs/1801.04381
+Reference: Sandler et al. (2018). MobileNetV2: Inverted Residuals and Linear Bottlenecks. CVPR. https://arxiv.org/abs/1801.04381
 
 ## 7. EfficientNetB0 for Transfer Learning
 
@@ -179,9 +171,7 @@ Further research involved the original paper, *"EfficientNet: Rethinking Model S
 
 The core innovation of EfficientNet is not merely a new architecture, but a fundamentally different approach to scaling models. Rather than arbitrarily increasing a single parameter (depth, width, or resolution), the authors proposed **compound scaling** — a simultaneous and balanced increase of all three dimensions using a fixed coefficient. 
 
-<img width="1111" height="478" alt="3" src="https://github.com/user-attachments/assets/cc73dc3f-c4ac-4e25-9317-c3652d8359aa" />
-
-Figure from Tan and Le (2019)
+Reference: Tan & Le (2019). EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks. ICML. https://arxiv.org/abs/1905.11946
 
 ### The Scaling Problem
 
@@ -324,14 +314,5 @@ The visualization process for EfficientNetB0 follows the same structure as for M
 
 For the scratch-built CNN, the visualization employs Grad-CAM, a more advanced technique compared to simple activation maps. The `make_gradcam` function computes gradients of the model's output with respect to the activation of a target convolutional layer (`conv2d_6`), then weights these activations by their corresponding gradients to highlight regions that most strongly influence the prediction.
 
-### Scratch CNN
-
-<img width="1990" height="761" alt="6" src="https://github.com/user-attachments/assets/7397810e-6cea-44d6-a62c-cd95da5337d4" />
-
-### MobileNetV2
-
-<img width="1990" height="757" alt="8" src="https://github.com/user-attachments/assets/08d6369a-2f49-46d1-a766-7be088193845" />
-
-### EfficientNetB0
-
-<img width="1990" height="757" alt="7" src="https://github.com/user-attachments/assets/65eb70ee-4fe3-4301-a48c-d1954f2e60e8" />
+___
+Dataset: https://huggingface.co/ahishamm/isic_binary_augmented

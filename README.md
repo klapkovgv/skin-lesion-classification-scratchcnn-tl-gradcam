@@ -1,4 +1,8 @@
 # skin-lesion-classification-scratchcnn-tl-gradcam
+
+>  This is an educational project developed during my university studies,
+> reflecting my hands-on experience.
+
 This project is dedicated to the development and comparison of three deep learning models for binary classification of skin lesions, based on the ISIC 2018 Dataset.
 
 The work implements a complete pipeline: from preprocessing "raw" images to training models from scratch and utilizing transfer learning, as well as interpreting their decisions using Grad-CAM.

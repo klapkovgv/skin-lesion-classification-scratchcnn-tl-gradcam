@@ -22,6 +22,8 @@ The work implements a complete pipeline: from preprocessing "raw" images to trai
 
 The binary ISIC 2018 dataset was loaded from Hugging Face, containing two balanced classes (0 and 1). The data was split using a stratified approach into training (70%), validation (15%), and testing (15%) subsets.
 
+Used Dataset: https://huggingface.co/ahishamm/isic_binary_augmented
+
 ## 2. Image Preprocessing
 
 An image preprocessing pipeline was implemented using `tf.data`, which includes JPEG decoding, pixel normalization to the [0,1] range, and resizing to 224 x 224. An automatic black-border cropping function was added, and an attempt was made to remove microscope artifacts using morphological operation. 
@@ -317,6 +319,3 @@ For MobileNetV2, the program retrieves the first batch from the test dataset and
 The visualization process for EfficientNetB0 follows the same structure as for MobileNetV2. The key difference lies in the model and target layer: here, the `activation_map` function extracts activations from the `top_activation` layer of EfficientNetB0, which corresponds to a high-level convolutional layer before the final classification head.
 
 For the scratch-built CNN, the visualization employs Grad-CAM, a more advanced technique compared to simple activation maps. The `make_gradcam` function computes gradients of the model's output with respect to the activation of a target convolutional layer (`conv2d_6`), then weights these activations by their corresponding gradients to highlight regions that most strongly influence the prediction.
-
-___
-Dataset: https://huggingface.co/ahishamm/isic_binary_augmented
